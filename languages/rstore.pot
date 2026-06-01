@@ -1,0 +1,87 @@
+# Copyright (C) 2026 Ravanora Technologies
+# This file is distributed under the GPL v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: R Store E-Commerce Theme 1.0.0\n"
+"Report-Msgid-Bugs-To: https://ravanora.com\n"
+"Last-Translator: Ravanora Technologies <support@ravanora.com>\n"
+"Language-Team: English <support@ravanora.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-06-01 12:00+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.8.1\n"
+"X-Domain: rstore\n"
+
+#: functions.php:27
+msgid "Primary Menu"
+msgstr ""
+
+#: functions.php:28
+msgid "Footer Menu"
+msgstr ""
+
+#: header.php:91
+msgid "Home"
+msgstr ""
+
+#: header.php:92
+msgid "Shop"
+msgstr ""
+
+#: header.php:93
+msgid "Sale"
+msgstr ""
+
+#: header.php:94
+msgid "Vendor Dashboard"
+msgstr ""
+
+#: header.php:95
+msgid "Compare"
+msgstr ""
+
+#: footer.php:18
+msgid "Quick Links"
+msgstr ""
+
+#: footer.php:20
+msgid "All Products"
+msgstr ""
+
+#: footer.php:22
+msgid "My Account"
+msgstr ""
+
+#: footer.php:23
+msgid "Cart"
+msgstr ""
+
+#: footer.php:27
+msgid "Help"
+msgstr ""
+
+#: footer.php:29
+msgid "Contact Us"
+msgstr ""
+
+#: footer.php:30
+msgid "FAQ"
+msgstr ""
+
+#: footer.php:31
+msgid "Returns"
+msgstr ""
+
+#: inc/widgets/widget-hero-slider.php:17
+msgid "Hero Slider Pro"
+msgstr ""
+
+#: inc/widgets/widget-product-grid.php:17
+msgid "Product Catalog Grid"
+msgstr ""
+
+#: inc/widgets/widget-sales-booster.php:17
+msgid "Sales Urgency Booster"
+msgstr ""
