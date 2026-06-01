@@ -1828,3 +1828,64 @@
   border-radius: 3px;
   transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+/* 5. Plugin-Free Advanced AJAX Wishlist Engine */
+@keyframes wishlist-pop {
+  0% { transform: scale(1); }
+  30% { transform: scale(1.4); }
+  60% { transform: scale(0.9); }
+  100% { transform: scale(1); }
+}
+
+.wishlist-burst {
+  animation: wishlist-pop 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+[data-wishlist].wishlisted {
+  color: var(--clr-danger) !important;
+  background: rgba(239, 68, 68, 0.1) !important;
+  border-color: var(--clr-danger) !important;
+  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.2);
+}
+
+[data-wishlist] svg {
+  transition: all 0.3s ease;
+}
+
+[data-wishlist].wishlisted svg {
+  fill: var(--clr-danger) !important;
+  stroke: var(--clr-danger) !important;
+}
+
+.wishlist-item-remove {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-3);
+  z-index: 3;
+  background: rgba(255, 255, 255, 0.95);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--clr-danger);
+  transition: var(--transition-base);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+}
+
+.wishlist-item-remove:hover {
+  background: var(--clr-danger);
+  color: white;
+  border-color: var(--clr-danger);
+  transform: scale(1.1) rotate(90deg);
+}
+
+.wishlist-controls {
+  display: flex;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+}

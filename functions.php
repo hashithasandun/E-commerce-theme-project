@@ -91,9 +91,20 @@ function rstore_enqueue_assets() {
 	wp_enqueue_script( 'rstore-instant-search', $uri . '/js/instant-search.js', array( 'rstore-app' ), '1.0.0', true );
 	wp_enqueue_script( 'rstore-quick-view', $uri . '/js/quick-view.js', array( 'rstore-app' ), '1.0.0', true );
 
-	// Localize AJAX URL to frontend scripts
+	// Fetch logged-in user's database wishlist
+	$user_wishlist = array();
+	if ( is_user_logged_in() ) {
+		$user_wishlist = get_user_meta( get_current_user_id(), '_rstore_wishlist', true );
+		if ( ! is_array( $user_wishlist ) ) {
+			$user_wishlist = array();
+		}
+	}
+
+	// Localize AJAX URL and initial states to frontend scripts
 	wp_localize_script( 'rstore-app', 'rstore_vars', array(
-		'ajax_url' => admin_url( 'admin-ajax.php' )
+		'ajax_url'      => admin_url( 'admin-ajax.php' ),
+		'is_logged_in'  => is_user_logged_in(),
+		'user_wishlist' => array_values( array_map( 'intval', $user_wishlist ) ),
 	) );
 }
 add_action( 'wp_enqueue_scripts', 'rstore_enqueue_assets' );
@@ -287,4 +298,58 @@ function rstore_product_quick_view_callback() {
 }
 add_action( 'wp_ajax_rstore_product_quick_view', 'rstore_product_quick_view_callback' );
 add_action( 'wp_ajax_nopriv_rstore_product_quick_view', 'rstore_product_quick_view_callback' );
+
+/**
+ * AJAX Toggle Wishlist Endpoint Callback
+ */
+function rstore_toggle_wishlist_callback() {
+	$product_id = isset( $_POST['product_id'] ) ? intval( $_POST['product_id'] ) : 0;
+
+	if ( ! $product_id ) {
+		wp_send_json_error( array( 'message' => 'Invalid product ID' ) );
+	}
+
+	$user_id = is_user_logged_in() ? get_current_user_id() : 0;
+	if ( ! $user_id ) {
+		wp_send_json_error( array( 'message' => 'User not logged in' ) );
+	}
+
+	$wishlist = get_user_meta( $user_id, '_rstore_wishlist', true );
+	if ( ! is_array( $wishlist ) ) {
+		$wishlist = array();
+	}
+
+	$status = 'added';
+	if ( in_array( $product_id, $wishlist ) ) {
+		$wishlist = array_diff( $wishlist, array( $product_id ) );
+		$status = 'removed';
+	} else {
+		$wishlist[] = $product_id;
+	}
+
+	update_user_meta( $user_id, '_rstore_wishlist', array_values( array_map( 'intval', $wishlist ) ) );
+
+	wp_send_json_success( array(
+		'status' => $status,
+		'count'  => count( $wishlist ),
+		'items'  => array_values( array_map( 'intval', $wishlist ) ),
+	) );
+}
+add_action( 'wp_ajax_rstore_toggle_wishlist', 'rstore_toggle_wishlist_callback' );
+add_action( 'wp_ajax_nopriv_rstore_toggle_wishlist', 'rstore_toggle_wishlist_callback' );
+
+/**
+ * AJAX Clear Wishlist Endpoint Callback
+ */
+function rstore_clear_wishlist_callback() {
+	$user_id = is_user_logged_in() ? get_current_user_id() : 0;
+	if ( ! $user_id ) {
+		wp_send_json_error( array( 'message' => 'User not logged in' ) );
+	}
+
+	update_user_meta( $user_id, '_rstore_wishlist', array() );
+	wp_send_json_success( array( 'items' => array() ) );
+}
+add_action( 'wp_ajax_rstore_clear_wishlist', 'rstore_clear_wishlist_callback' );
+add_action( 'wp_ajax_nopriv_rstore_clear_wishlist', 'rstore_clear_wishlist_callback' );
 
