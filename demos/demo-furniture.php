@@ -35,7 +35,7 @@ $uri = get_template_directory_uri();
       --bg-secondary: #F3EFEA;
     }
     body { background-color: var(--bg-main); color: #4A4035; }
-    .furniture-hero { min-height: 80vh; display:flex; align-items:center; background: linear-gradient(rgba(255,255,255,0.1), rgba(255,255,255,0.1)), url('https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1600') center/cover no-repeat; }
+    .furniture-hero { min-height: 80vh; display:flex; align-items:center; background: linear-gradient(rgba(255,255,255,0.1), rgba(255,255,255,0.1)), url('<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/demos/furniture-hero.jpg') center/cover no-repeat; }
     .furniture-title { font-family: var(--font-display); font-size: clamp(3rem, 7vw, 5rem); font-weight: 800; line-height: 1.1; color: #2C251E; margin-bottom: 24px; }
     .furniture-subtitle { font-size: 1.1rem; line-height: 1.6; color: #5C4D3C; margin-bottom: 32px; max-width: 500px; }
   </style>

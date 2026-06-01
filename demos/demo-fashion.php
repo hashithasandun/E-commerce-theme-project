@@ -30,7 +30,7 @@ $uri = get_template_directory_uri();
       --clr-primary-soft: rgba(212, 175, 55, 0.1);
       --grad-primary: linear-gradient(135deg, #D4AF37 0%, #AA7C11 100%);
     }
-    .fashion-hero { min-height: 80vh; display:flex; align-items:center; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1600') center/cover no-repeat; color:white; }
+    .fashion-hero { min-height: 80vh; display:flex; align-items:center; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/demos/fashion-hero.jpg') center/cover no-repeat; color:white; }
     .fashion-title { font-family: var(--font-display); font-size: clamp(3rem, 8vw, 6rem); font-weight: 900; line-height: 1.1; margin-bottom: 24px; text-shadow: 0 4px 20px rgba(0,0,0,0.3); }
     .lookbook-card { position:relative; overflow:hidden; border-radius:24px; aspect-ratio: 3/4; }
     .lookbook-img { width:100%; height:100%; object-fit:cover; transition: transform 0.8s ease; }
@@ -129,7 +129,7 @@ $uri = get_template_directory_uri();
 
       <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:32px">
         <div class="lookbook-card reveal">
-          <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=600" class="lookbook-img" alt="Boho Beach">
+          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/demos/lookbook-boho.jpg" class="lookbook-img" alt="Boho Beach">
           <div class="lookbook-overlay">
             <span style="font-size:11px; text-transform:uppercase; font-weight:700; letter-spacing:1px; color:var(--clr-primary)">Collection 01</span>
             <h3 style="font-family:var(--font-display); font-size:1.8rem; font-weight:800; margin-top:8px">Bohemian Breeze</h3>
@@ -139,7 +139,7 @@ $uri = get_template_directory_uri();
         </div>
 
         <div class="lookbook-card reveal">
-          <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=600" class="lookbook-img" alt="Minimalist">
+          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/demos/lookbook-mini.jpg" class="lookbook-img" alt="Minimalist">
           <div class="lookbook-overlay">
             <span style="font-size:11px; text-transform:uppercase; font-weight:700; letter-spacing:1px; color:var(--clr-primary)">Collection 02</span>
             <h3 style="font-family:var(--font-display); font-size:1.8rem; font-weight:800; margin-top:8px">Modern Tailoring</h3>
@@ -149,7 +149,7 @@ $uri = get_template_directory_uri();
         </div>
 
         <div class="lookbook-card reveal">
-          <img src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?q=80&w=600" class="lookbook-img" alt="Casual">
+          <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/demos/lookbook-casual.jpg" class="lookbook-img" alt="Casual">
           <div class="lookbook-overlay">
             <span style="font-size:11px; text-transform:uppercase; font-weight:700; letter-spacing:1px; color:var(--clr-primary)">Collection 03</span>
             <h3 style="font-family:var(--font-display); font-size:1.8rem; font-weight:800; margin-top:8px">Linen Essentials</h3>

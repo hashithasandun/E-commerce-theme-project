@@ -178,28 +178,28 @@ function rstore_ajax_search_callback() {
 					'title'     => 'Premium Wireless Headphones',
 					'permalink' => '#',
 					'price'     => '<span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>199.00</bdi></span>',
-					'image'     => 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=150&q=80',
+					'image'     => get_template_directory_uri() . '/assets/images/products/headphones.jpg',
 				),
 				array(
 					'id'        => 102,
 					'title'     => 'Minimalist Leather Watch',
 					'permalink' => '#',
 					'price'     => '<span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>149.00</bdi></span>',
-					'image'     => 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=150&q=80',
+					'image'     => get_template_directory_uri() . '/assets/images/products/watch.jpg',
 				),
 				array(
 					'id'        => 103,
 					'title'     => 'Ergonomic Office Chair',
 					'permalink' => '#',
 					'price'     => '<span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>299.00</bdi></span>',
-					'image'     => 'https://images.unsplash.com/photo-1505797149-43b0069ec26b?w=150&q=80',
+					'image'     => get_template_directory_uri() . '/assets/images/products/chair.jpg',
 				),
 				array(
 					'id'        => 104,
 					'title'     => 'Water-Resistant Smartwatch',
 					'permalink' => '#',
 					'price'     => '<span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>189.00</bdi></span>',
-					'image'     => 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=150&q=80',
+					'image'     => get_template_directory_uri() . '/assets/images/products/watch.jpg',
 				),
 			);
 			foreach ( $mock_products as $mock ) {
@@ -256,8 +256,8 @@ function rstore_product_quick_view_callback() {
 	// Mock Quick View fallback if WooCommerce is inactive/offline
 	$mock_desc = 'Handcrafted using eco-friendly, premium materials. This product combines top-tier performance with stunning visual aesthetics, offering the perfect addition to your space.';
 	$mock_gallery = array(
-		'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&q=80',
-		'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&q=80'
+		get_template_directory_uri() . '/assets/images/products/headphones.jpg',
+		get_template_directory_uri() . '/assets/images/products/watch.jpg'
 	);
 	if ( $product_id == 101 ) {
 		$mock_title = 'Premium Wireless Headphones';
@@ -265,7 +265,7 @@ function rstore_product_quick_view_callback() {
 	} else if ( $product_id == 102 ) {
 		$mock_title = 'Minimalist Leather Watch';
 		$mock_price = '<span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>149.00</bdi></span>';
-		$mock_gallery = array( 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&q=80' );
+		$mock_gallery = array( get_template_directory_uri() . '/assets/images/products/watch.jpg' );
 	} else {
 		$mock_title = 'Handcrafted Premium Product';
 		$mock_price = '<span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>99.00</bdi></span>';
