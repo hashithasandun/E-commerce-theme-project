@@ -5,7 +5,26 @@
  * @package RStore
  */
 
-get_header(); ?>
+get_header();
+
+$rstore_layout = get_post_meta( get_the_ID(), '_rstore_product_layout', true );
+$rstore_accent = get_post_meta( get_the_ID(), '_rstore_accent_color', true );
+$rstore_bg     = get_post_meta( get_the_ID(), '_rstore_bg_color', true );
+
+if ( empty( $rstore_layout ) ) { $rstore_layout = 'default'; }
+if ( empty( $rstore_accent ) ) { $rstore_accent = '#6C3FE8'; }
+if ( empty( $rstore_bg ) ) { $rstore_bg = '#ffffff'; }
+?>
+<style>
+  :root {
+    --clr-primary: <?php echo esc_attr( $rstore_accent ); ?>;
+    --clr-primary-light: <?php echo esc_attr( $rstore_accent ); ?>cc;
+    --clr-primary-dark: <?php echo esc_attr( $rstore_accent ); ?>;
+    --clr-primary-soft: <?php echo esc_attr( $rstore_accent ); ?>1F;
+    --grad-primary: linear-gradient(135deg, <?php echo esc_attr( $rstore_accent ); ?> 0%, <?php echo esc_attr( $rstore_accent ); ?>cc 100%);
+    --bg-product-custom: <?php echo esc_attr( $rstore_bg ); ?>;
+  }
+</style>
 
 <main>
 
@@ -23,9 +42,9 @@ get_header(); ?>
   </div>
 
   <!-- Product Page -->
-  <div class="section-sm">
+  <div class="section-sm rstore-layout-wrapper rstore-layout-<?php echo esc_attr( $rstore_layout ); ?>" style="<?php if ( $rstore_layout !== 'minimal_dark' && ! empty( $rstore_bg ) && $rstore_bg !== '#ffffff' ) { echo 'background-color: ' . esc_attr( $rstore_bg ) . ';'; } ?>">
     <div class="container">
-      <div class="product-page">
+      <div class="product-page rstore-layout-grid-<?php echo esc_attr( $rstore_layout ); ?>">
 
         <!-- ======== LEFT: GALLERY ======== -->
         <div class="product-gallery">

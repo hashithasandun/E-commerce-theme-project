@@ -353,3 +353,117 @@ function rstore_clear_wishlist_callback() {
 add_action( 'wp_ajax_rstore_clear_wishlist', 'rstore_clear_wishlist_callback' );
 add_action( 'wp_ajax_nopriv_rstore_clear_wishlist', 'rstore_clear_wishlist_callback' );
 
+/**
+ * Register Product Page Custom Styling Meta Box
+ */
+function rstore_add_product_options_metabox() {
+	add_meta_box(
+		'rstore_product_styling_options',
+		__( 'R Store Product Styling Options', 'rstore' ),
+		'rstore_render_product_styling_options_metabox',
+		'product',
+		'normal',
+		'high'
+	);
+}
+add_action( 'add_meta_boxes', 'rstore_add_product_options_metabox' );
+
+/**
+ * Render Product Page Custom Styling Meta Box Fields
+ */
+function rstore_render_product_styling_options_metabox( $post ) {
+	wp_nonce_field( 'rstore_save_product_styling_options', 'rstore_product_styling_options_nonce' );
+
+	$current_layout = get_post_meta( $post->ID, '_rstore_product_layout', true );
+	$current_accent = get_post_meta( $post->ID, '_rstore_accent_color', true );
+	$current_bg     = get_post_meta( $post->ID, '_rstore_bg_color', true );
+
+	if ( empty( $current_layout ) ) { $current_layout = 'default'; }
+	if ( empty( $current_accent ) ) { $current_accent = '#6C3FE8'; }
+	if ( empty( $current_bg ) ) { $current_bg = '#ffffff'; }
+	?>
+	<div class="rstore-metabox-wrapper" style="padding: 12px 0;">
+		<style>
+			.rstore-meta-row { display: flex; align-items: center; margin-bottom: 16px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif; }
+			.rstore-meta-label { width: 220px; font-weight: 600; color: #333; }
+			.rstore-meta-input { flex-grow: 1; }
+			.rstore-meta-input select, .rstore-meta-input input[type="color"] { padding: 6px 10px; border-radius: 4px; border: 1px solid #ccc; min-width: 260px; height: 36px; }
+			.rstore-meta-input input[type="color"] { padding: 2px; width: 60px; min-width: 60px; cursor: pointer; }
+			.rstore-meta-desc { font-size: 12px; color: #777; margin-top: 4px; }
+		</style>
+		
+		<div class="rstore-meta-row">
+			<div class="rstore-meta-label">
+				<label for="rstore_product_layout"><?php _e( 'Select Product Layout Preset', 'rstore' ); ?></label>
+			</div>
+			<div class="rstore-meta-input">
+				<select name="rstore_product_layout" id="rstore_product_layout">
+					<option value="default" <?php selected( $current_layout, 'default' ); ?>><?php _e( 'Classic Glassmorphic (Default)', 'rstore' ); ?></option>
+					<option value="modern_split" <?php selected( $current_layout, 'modern_split' ); ?>><?php _e( 'Modern Split Screen Layout', 'rstore' ); ?></option>
+					<option value="minimal_dark" <?php selected( $current_layout, 'minimal_dark' ); ?>><?php _e( 'Minimalist Dark Mode', 'rstore' ); ?></option>
+					<option value="vibrant_gradient" <?php selected( $current_layout, 'vibrant_gradient' ); ?>><?php _e( 'Premium Vibrant Gradient Pattern', 'rstore' ); ?></option>
+				</select>
+				<div class="rstore-meta-desc"><?php _e( 'Choose a high-converting premium visual grid layout preset for this single product page.', 'rstore' ); ?></div>
+			</div>
+		</div>
+
+		<div class="rstore-meta-row">
+			<div class="rstore-meta-label">
+				<label for="rstore_accent_color"><?php _e( 'Custom Accent Highlights Color', 'rstore' ); ?></label>
+			</div>
+			<div class="rstore-meta-input">
+				<input type="color" name="rstore_accent_color" id="rstore_accent_color" value="<?php echo esc_attr( $current_accent ); ?>">
+				<div class="rstore-meta-desc"><?php _e( 'Choose a custom brand accent color to replace the main highlights, buttons, and pricing elements for this product.', 'rstore' ); ?></div>
+			</div>
+		</div>
+
+		<div class="rstore-meta-row">
+			<div class="rstore-meta-label">
+				<label for="rstore_bg_color"><?php _e( 'Custom Background Theme Color', 'rstore' ); ?></label>
+			</div>
+			<div class="rstore-meta-input">
+				<input type="color" name="rstore_bg_color" id="rstore_bg_color" value="<?php echo esc_attr( $current_bg ); ?>">
+				<div class="rstore-meta-desc"><?php _e( 'Specify a custom body background color for this single product layout.', 'rstore' ); ?></div>
+			</div>
+		</div>
+	</div>
+	<?php
+}
+
+/**
+ * Save Product Page Custom Styling Meta Box Data
+ */
+function rstore_save_product_styling_options_metabox( $post_id ) {
+	if ( ! isset( $_POST['rstore_product_styling_options_nonce'] ) ) {
+		return;
+	}
+	if ( ! wp_verify_nonce( $_POST['rstore_product_styling_options_nonce'], 'rstore_save_product_styling_options' ) ) {
+		return;
+	}
+
+	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+		return;
+	}
+
+	if ( ! current_user_can( 'edit_post', $post_id ) ) {
+		return;
+	}
+
+	if ( isset( $_POST['rstore_product_layout'] ) ) {
+		$layout = sanitize_text_field( $_POST['rstore_product_layout'] );
+		update_post_meta( $post_id, '_rstore_product_layout', $layout );
+	}
+
+	if ( isset( $_POST['rstore_accent_color'] ) ) {
+		$accent = sanitize_hex_color( $_POST['rstore_accent_color'] );
+		update_post_meta( $post_id, '_rstore_accent_color', $accent );
+	}
+
+	if ( isset( $_POST['rstore_bg_color'] ) ) {
+		$bg = sanitize_hex_color( $_POST['rstore_bg_color'] );
+		update_post_meta( $post_id, '_rstore_bg_color', $bg );
+	}
+}
+add_action( 'save_post_product', 'rstore_save_product_styling_options_metabox' );
+add_action( 'save_post', 'rstore_save_product_styling_options_metabox' );
+

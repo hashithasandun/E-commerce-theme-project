@@ -1889,3 +1889,205 @@
   gap: var(--space-3);
   margin-bottom: var(--space-6);
 }
+
+/* ============================================================
+   6. Advanced Per-Product Custom Layouts & Styling Meta Presets
+   ============================================================ */
+
+/* A. Modern Split Screen Layout */
+@media (min-width: 992px) {
+  .rstore-layout-grid-modern_split {
+    grid-template-columns: 1.1fr 0.9fr !important;
+    gap: var(--space-16) !important;
+    align-items: stretch !important;
+  }
+  .rstore-layout-grid-modern_split .product-gallery {
+    position: sticky !important;
+    top: calc(var(--header-height) + 40px) !important;
+    align-self: start !important;
+  }
+  .rstore-layout-grid-modern_split .product-details {
+    padding-left: var(--space-8) !important;
+    border-left: 1px solid var(--border-color) !important;
+    padding-top: 0 !important;
+  }
+}
+
+.rstore-layout-grid-modern_split .product-detail-title {
+  font-size: clamp(2rem, 3.5vw, 3.25rem) !important;
+  letter-spacing: -0.03em !important;
+  line-height: 1.15 !important;
+  font-weight: var(--fw-black) !important;
+  text-transform: uppercase !important;
+  background: var(--grad-primary) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  margin-bottom: var(--space-6) !important;
+}
+
+/* B. Minimalist Dark Mode Layout */
+.rstore-layout-minimal_dark {
+  background-color: #0f0f15 !important;
+  color: #ffffff !important;
+  --bg-primary: #0f0f15 !important;
+  --bg-secondary: rgba(255, 255, 255, 0.04) !important;
+  --bg-tertiary: rgba(255, 255, 255, 0.06) !important;
+  --bg-card: rgba(255, 255, 255, 0.03) !important;
+  --text-primary: #ffffff !important;
+  --text-secondary: #e2e2e9 !important;
+  --text-muted: #8e8e9f !important;
+  --border-color: rgba(255, 255, 255, 0.08) !important;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+.rstore-layout-minimal_dark .product-page {
+  background-color: transparent !important;
+}
+
+.rstore-layout-minimal_dark .product-main-img-wrap {
+  background: rgba(255, 255, 255, 0.02) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.rstore-layout-minimal_dark .product-thumb {
+  background: rgba(255, 255, 255, 0.02) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.rstore-layout-minimal_dark .product-thumb.active {
+  border-color: var(--clr-primary) !important;
+}
+
+.rstore-layout-minimal_dark .product-action-icon-btn,
+.rstore-layout-minimal_dark .quantity-input {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  color: #ffffff !important;
+}
+
+.rstore-layout-minimal_dark .quantity-btn {
+  color: #ffffff !important;
+}
+
+.rstore-layout-minimal_dark .quantity-field {
+  color: #ffffff !important;
+}
+
+.rstore-layout-minimal_dark .quantity-discounts {
+  background: rgba(255, 255, 255, 0.02) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.rstore-layout-minimal_dark .qty-discount-row {
+  border-bottom-color: rgba(255, 255, 255, 0.06) !important;
+  color: #e2e2e9 !important;
+}
+
+.rstore-layout-minimal_dark .qty-discount-row.highlight {
+  background: rgba(255, 255, 255, 0.04) !important;
+  color: var(--clr-primary) !important;
+}
+
+.rstore-layout-minimal_dark .product-services {
+  background: rgba(255, 255, 255, 0.02) !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+.rstore-layout-minimal_dark .product-service-title {
+  color: #ffffff !important;
+}
+
+.rstore-layout-minimal_dark .product-service-desc {
+  color: #8e8e9f !important;
+}
+
+.rstore-layout-minimal_dark .tab-btn {
+  color: #8e8e9f !important;
+  border-bottom-color: transparent !important;
+}
+
+.rstore-layout-minimal_dark .tab-btn.active {
+  color: #ffffff !important;
+  border-bottom-color: var(--clr-primary) !important;
+}
+
+.rstore-layout-minimal_dark .tabs-header {
+  border-bottom-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.rstore-layout-minimal_dark .together-products,
+.rstore-layout-minimal_dark .together-total-row {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.rstore-layout-minimal_dark .together-product-img {
+  background: rgba(255, 255, 255, 0.02) !important;
+}
+
+.rstore-layout-minimal_dark .together-product-name {
+  color: #ffffff !important;
+}
+
+.rstore-layout-minimal_dark .together-total-label {
+  color: #8e8e9f !important;
+}
+
+.rstore-layout-minimal_dark .together-total-price {
+  color: #ffffff !important;
+}
+
+.rstore-layout-minimal_dark .accordion-item {
+  border-color: rgba(255, 255, 255, 0.06) !important;
+}
+
+.rstore-layout-minimal_dark .accordion-header {
+  background: rgba(255, 255, 255, 0.02) !important;
+  color: #ffffff !important;
+}
+
+.rstore-layout-minimal_dark .accordion-body {
+  color: #e2e2e9 !important;
+}
+
+.rstore-layout-minimal_dark .review-card {
+  background: rgba(255, 255, 255, 0.02) !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+.rstore-layout-minimal_dark .review-author-name {
+  color: #ffffff !important;
+}
+
+.rstore-layout-minimal_dark .review-text {
+  color: #e2e2e9 !important;
+}
+
+/* C. Premium Vibrant Gradient Layout */
+@keyframes rstoreGradientMesh {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.rstore-layout-vibrant_gradient {
+  background: linear-gradient(-45deg, var(--bg-product-custom), rgba(255,255,255,0.9), var(--clr-primary-soft), rgba(240,240,250,0.95)) !important;
+  background-size: 400% 400% !important;
+  animation: rstoreGradientMesh 15s ease infinite !important;
+  transition: background 0.4s ease;
+}
+
+.rstore-layout-vibrant_gradient .product-page {
+  background: rgba(255, 255, 255, 0.45) !important;
+  backdrop-filter: blur(24px) saturate(190%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(190%) !important;
+  border-radius: var(--radius-3xl) !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  padding: var(--space-8) !important;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.05) !important;
+}
+
+@media (max-width: 768px) {
+  .rstore-layout-vibrant_gradient .product-page {
+    padding: var(--space-4) !important;
+  }
+}
