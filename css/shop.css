@@ -1921,6 +1921,7 @@
   text-transform: uppercase !important;
   background: var(--grad-primary) !important;
   -webkit-background-clip: text !important;
+  background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
   margin-bottom: var(--space-6) !important;
 }

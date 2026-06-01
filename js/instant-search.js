@@ -1,10 +1,10 @@
 /**
  * R Store Premium Features: AJAX Instant Search & Auto-Complete
  */
-(function() {
+(function () {
   'use strict';
 
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function () {
     var searchInput = document.querySelector('.header-search-input');
     var dropdown = document.getElementById('search-dropdown');
 
@@ -14,7 +14,7 @@
     var currentRequest = null;
 
     // Listen to keystrokes
-    searchInput.addEventListener('input', function() {
+    searchInput.addEventListener('input', function () {
       var query = searchInput.value.trim();
 
       clearTimeout(debounceTimer);
@@ -30,20 +30,20 @@
       dropdown.classList.add('active');
 
       // Debounce the actual fetch request by 300ms
-      debounceTimer = setTimeout(function() {
+      debounceTimer = setTimeout(function () {
         performSearch(query);
       }, 300);
     });
 
     // Close search dropdown on click outside
-    document.addEventListener('click', function(e) {
+    document.addEventListener('click', function (e) {
       if (!searchInput.contains(e.target) && !dropdown.contains(e.target)) {
         dropdown.classList.remove('active');
       }
     });
 
     // Focus triggers showing previous results if available
-    searchInput.addEventListener('focus', function() {
+    searchInput.addEventListener('focus', function () {
       if (dropdown.innerHTML !== '' && searchInput.value.trim().length >= 2) {
         dropdown.classList.add('active');
       }
@@ -65,17 +65,17 @@
       var requestUrl = ajaxUrl + '?action=rstore_ajax_search&term=' + encodeURIComponent(query);
 
       fetch(requestUrl, { signal: controller.signal })
-        .then(function(response) {
+        .then(function (response) {
           return response.json();
         })
-        .then(function(response) {
+        .then(function (response) {
           if (response.success && Array.isArray(response.data)) {
             renderResults(response.data, query);
           } else {
             dropdown.innerHTML = '<div class="search-no-results">An error occurred. Please try again.</div>';
           }
         })
-        .catch(function(err) {
+        .catch(function (err) {
           if (err.name !== 'AbortError') {
             dropdown.innerHTML = '<div class="search-no-results">No products found matching "' + RStore.escapeHTML(query) + '"</div>';
           }
@@ -92,14 +92,14 @@
       }
 
       var html = '<div class="search-results-list">';
-      products.forEach(function(product) {
+      products.forEach(function (product) {
         html += '<a href="' + esc_url(product.permalink) + '" class="search-result-item">' +
-                  '<img src="' + esc_url(product.image) + '" alt="' + RStore.escapeHTML(product.title) + '" class="search-result-img" />' +
-                  '<div class="search-result-details">' +
-                    '<h4 class="search-result-title">' + RStore.escapeHTML(product.title) + '</h4>' +
-                    '<div class="search-result-price">' + product.price + '</div>' +
-                  '</div>' +
-                '</a>';
+          '<img src="' + esc_url(product.image) + '" alt="' + RStore.escapeHTML(product.title) + '" class="search-result-img" />' +
+          '<div class="search-result-details">' +
+          '<h4 class="search-result-title">' + RStore.escapeHTML(product.title) + '</h4>' +
+          '<div class="search-result-price">' + product.price + '</div>' +
+          '</div>' +
+          '</a>';
       });
       html += '</div>';
 
