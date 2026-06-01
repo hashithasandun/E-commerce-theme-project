@@ -59,6 +59,15 @@
     <div class="cart-drawer-title">🛒 My Cart <span class="cart-drawer-count" data-cart-count>0</span></div>
     <button class="cart-drawer-close" data-close-cart>✕</button>
   </div>
+  
+  <!-- Premium Free Shipping Goal (Cart Goal) -->
+  <div class="cart-goal-container" id="cart-goal-container" style="display: none;">
+    <div class="cart-goal-text" id="cart-goal-text">Spend <span class="cart-goal-remaining">$0.00</span> more to unlock <span class="cart-goal-badge">FREE SHIPPING</span>!</div>
+    <div class="cart-goal-progress">
+      <div class="cart-goal-bar" id="cart-goal-bar" style="width: 0%"></div>
+    </div>
+  </div>
+
   <div class="cart-drawer-body"></div>
   <div class="cart-drawer-footer">
     <div class="cart-subtotal">
@@ -93,6 +102,13 @@
 <div class="sales-popup" id="sales-popup"></div>
 <div class="compare-bar" style="display:none;position:fixed;bottom:0;left:0;right:0;background:var(--grad-primary);padding:12px 24px;z-index:var(--z-fixed);align-items:center;gap:16px;box-shadow:0 -4px 20px rgba(108,63,232,0.3)"></div>
 <button class="back-to-top" id="back-to-top">↑</button>
+
+<!-- Premium Quick View Modal Overlay -->
+<div class="quick-view-overlay" id="quick-view-overlay">
+  <div class="quick-view-container" id="quick-view-container">
+    <!-- Loaded dynamically via AJAX -->
+  </div>
+</div>
 
 <?php wp_footer(); ?>
 </body>

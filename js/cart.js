@@ -451,3 +451,15 @@ const Cart = {
     }
   },
 };
+
+// Expose addToCart globally under RStore namespace for Quick View triggers
+window.RStore = window.RStore || {};
+window.RStore.addToCart = function(id, name, price, img) {
+  Cart.add({
+    id: id,
+    name: name,
+    price: parseFloat(price),
+    image: img,
+    emoji: '🛍'
+  });
+};
